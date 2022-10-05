@@ -1,3 +1,3 @@
-# Git 
+# Git my Ruby
 
-My Ruby
+My Ruby lessons
