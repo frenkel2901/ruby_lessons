@@ -38,24 +38,24 @@ puts "Напишите СТОП, чтобы завершить: "
 
 loop do
 
-print "Наименование товара: "
-name = gets.chomp.to_s
+  print "Наименование товара: "
+  name = gets.chomp.to_s
 
 break if name.casecmp('стоп') == 0
 
-name_arr << name
+  name_arr << name
 
-print "Цена за единицу #{name}: "
-price = gets.chomp.to_f
+  print "Цена за единицу #{name}: "
+  price = gets.chomp.to_f
 
-print "Количество #{name}: "
-qt = gets.chomp.to_i
+  print "Количество #{name}: "
+  qt = gets.chomp.to_i
 
-sum = price * qt
-sum_arr << sum
+  sum = price * qt
+  sum_arr << sum
 
-about_product = [[price, qt]]
-h_all[name] = about_product.to_h
+  about_product = [[price, qt]]
+  h_all[name] = about_product.to_h
 
 end
 
@@ -66,9 +66,9 @@ puts h_all
 i = 0
 cart = 0
 while i < sum_arr.size do
-puts "#{name_arr[i]} - #{sum_arr[i]}"
-cart = cart + sum_arr[i]
-i = i + 1
+  puts "#{name_arr[i]} - #{sum_arr[i]}"
+  cart = cart + sum_arr[i]
+  i = i + 1
 end
 
 #Выводим на экран корзиу с общей суммой покупок
