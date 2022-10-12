@@ -1,13 +1,11 @@
 class Train
   attr_accessor :speed
   attr_reader :number, :type, :waggon
-  @@all_trains = {} #для проверки
   
   def initialize(number, type, waggon) #создание с 3 заданными данными
     @number = number
     @type = type
     @waggon = waggon
-    @@all_trains[number] = type
     @train_route = []
     @speed = 0
   end
@@ -34,14 +32,14 @@ class Train
   end
 
   def next_station #следующая станция - поезд едет
-    if @train_route.size > (@train_route.index(@position) + 1)
+    if @train_route.size > (@train_route.index(@position) + 1) #запрешаем ехать с последней станции вперед
       @next_station = @train_route[@train_route.index(@position) + 1]
       @position = @train_route[@train_route.index(@position) + 1]
     end
   end
 
   def back_station #предыдущая станция - поезд едет
-    if @train_route.index(@position) > 0
+    if @train_route.index(@position) > 0 #запрещаем ехать назад с 1 станции
       @back_station = @train_route[@train_route.index(@position) - 1]
       @position = @train_route[@train_route.index(@position) - 1]
     end
