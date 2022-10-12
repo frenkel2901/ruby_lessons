@@ -1,31 +1,35 @@
-class Route
-  attr_reader :route
+class Station
+  attr_reader :depo
 
-  def initialize(first, last) #создаем путь с 1 и последней станциями
-    @route = []
-    @first = first
-    @last = last
-    @route[0] = first
-    @route << last
+  def initialize(name)
+    @name = name
+    @depo = []
   end
 
-  def new_station(station) #добавилb новую выбранную станцию перед последней станцией
-    @route.delete_at(-1)
-    @route << station
-    @route << @last
-    puts @route 
+  def train_arrive(train)
+    puts "Поезд #{train} прибыл на станцию"
+    @depo << train
   end
 
-  def delete_station(station) #удаляем выбранную станцию
-    unless station == @first || station == @last #запрещаем удалять 1 и последнюю станции
-      @route.delete(station)
+  def train_departure(train)
+    puts "Поезд #{train} отправился со станции"
+    @depo.delete(train)
+  end
+
+  def train_on_stay_type(type)
+    i = 0
+    @depo.each do |train| 
+      if train.type == type
+        i = i + 1
+      end
     end
+    puts "#{i} поездов на станции с типом: #{type}"
   end
-
 end
 
 class Train
   attr_accessor :speed
+  attr_reader :number, :type, :waggon
   @@all_trains = {} #для проверки
   
   def initialize(number, type, waggon) #создание с 3 заданными данными
@@ -39,10 +43,6 @@ class Train
 
   def stop #остановка
     @speed = 0 
-  end
-
-  def waggon #кол-во вагонов
-    @waggon
   end
 
   def waggon_plus #добавление 1 вагона
@@ -83,29 +83,25 @@ class Train
   end
 end
 
-class Station #пока не готово до конца
-  def initialize(name)
-    @name = name
+class Route
+  attr_reader :route
+
+  def initialize(first, last) #создаем путь с 1 и последней станциями
+    @route = []
+    @first = first
+    @last = last
+    @route[0] = first
+    @route << last
   end
 
-  def stations
-    puts @@stations
+  def new_station(station) #добавилb новую выбранную станцию перед последней станцией
+    route.insert(-2, station)
   end
 
-  def train_arrive
-    puts "Поезд прибыл на станцию"
+  def delete_station(station) #удаляем выбранную станцию
+    unless station == @first || station == @last #запрещаем удалять 1 и последнюю станции
+      @route.delete(station)
+    end
   end
 
-  def train_departure
-    puts "Поезд отправился со станции"
-  end
-
-  def train_on_stay
-    puts "Cписок поездов на станции: "
-  end
-
-  def train_on_stay_type
-    puts "Список поездов на станции с типом:"
-    puts "Кол-во грузовых: кол-во пассажирских: "
-  end
 end

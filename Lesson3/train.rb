@@ -1,5 +1,6 @@
 class Train
   attr_accessor :speed
+  attr_reader :number, :type, :waggon
   @@all_trains = {} #для проверки
   
   def initialize(number, type, waggon) #создание с 3 заданными данными
@@ -13,10 +14,6 @@ class Train
 
   def stop #остановка
     @speed = 0 
-  end
-
-  def waggon #кол-во вагонов
-    @waggon
   end
 
   def waggon_plus #добавление 1 вагона

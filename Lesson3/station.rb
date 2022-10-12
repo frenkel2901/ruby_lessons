@@ -1,26 +1,28 @@
-class Station #пока не готово до конца
+class Station
+  attr_reader :depo
+
   def initialize(name)
     @name = name
+    @depo = []
   end
 
-  def stations
-    puts @@stations
+  def train_arrive(train)
+    puts "Поезд #{train} прибыл на станцию"
+    @depo << train
   end
 
-  def train_arrive
-    puts "Поезд прибыл на станцию"
+  def train_departure(train)
+    puts "Поезд #{train} отправился со станции"
+    @depo.delete(train)
   end
 
-  def train_departure
-    puts "Поезд отправился со станции"
-  end
-
-  def train_on_stay
-    puts "Cписок поездов на станции: "
-  end
-
-  def train_on_stay_type
-    puts "Список поездов на станции с типом:"
-    puts "Кол-во грузовых: кол-во пассажирских: "
+  def train_on_stay_type(type)
+    i = 0
+    @depo.each do |train| 
+      if train.type == type
+        i = i + 1
+      end
+    end
+    puts "#{i} поездов на станции с типом: #{type}"
   end
 end

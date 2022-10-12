@@ -10,10 +10,7 @@ class Route
   end
 
   def new_station(station) #добавилb новую выбранную станцию перед последней станцией
-    @route.delete_at(-1)
-    @route << station
-    @route << @last
-    puts @route 
+    route.insert(-2, station)
   end
 
   def delete_station(station) #удаляем выбранную станцию
