@@ -7,34 +7,29 @@ require_relative 'passanger_train'
 require_relative 'route'
 require_relative 'station'
 
+class String 
+  def to_Station
+    Station.new(self)
+  end
+end
+
 loop do
   puts "Введите номер необходимой операции: "
   puts "1. Создать станцию: "
   puts "2. Создать поезд: "
   puts "3. Создать моршрут и управлять станциями: "
   puts "4. Назначить маршрут поезду: "
-  puts "5. Управлять вагонами поезда: " #прицеплять, отцеплять
-  puts "6. Перемещать поезд по маршруту: "
-  puts "7. Просмотреть список станций и поездов "
+  puts "5. Добавить вагон поезду: "
+  puts "6. Отцепить вагон от поезда: "
+  puts "7. Перемещать поезд по маршруту: "
+  puts "8. Просмотреть список станций и поездов "
+  puts "0. Выйти"
   input = gets.chomp.to_i
   break if input == 0
 
-  puts input
-  
   if input == 1
+    station_name = gets.chomp.to_s
+    station_name = station_name.to_Station
+    puts station_name.class
   end
-
-  if input == 1
-  end
-
-  if input == 1
-  end
-
-  if input == 1
-  end
-
-  if input == 1
-  end
-  
-
 end

@@ -1,7 +1,7 @@
 class Station
   attr_reader :depo
   $stations_info = {}
-  
+
   def initialize(name)
     @name = name
     @depo = []
