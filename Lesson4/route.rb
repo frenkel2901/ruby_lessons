@@ -2,11 +2,9 @@ class Route
   attr_reader :route
   
   def initialize(first, last) #создаем путь с 1 и последней станциями
-    @route = []
+    @route = [first, last]
     @first = first
     @last = last
-    @route[0] = first
-    @route << last
   end
   
   def new_station(station) #добавить новую выбранную станцию перед последней станцией (если такой нет)

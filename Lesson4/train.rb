@@ -1,6 +1,6 @@
 class Train
   attr_accessor :speed
-  attr_reader :number
+  attr_reader :number, :waggon, :train_route
 
   def initialize(number) #создание
     @number = number
@@ -14,16 +14,12 @@ class Train
   end
 
   def waggon_plus(waggon) #добавление 1 вагона
-    if speed == 0
-      @waggon << waggon
-    end
+    @waggon << waggon if speed == 0
     @waggon = @waggon.uniq
   end
 
   def waggon_minus(waggon)  #убрать 1 вагон
-    if speed == 0
-      @waggon.delete(waggon) 
-    end
+    @waggon.delete(waggon) if speed == 0
   end
 
   def train_route(route) #принимает маршрут и занимает 1 станцию

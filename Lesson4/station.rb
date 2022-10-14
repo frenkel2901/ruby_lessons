@@ -1,5 +1,5 @@
 class Station
-  attr_reader :depo
+  attr_reader :depo, :name
   $stations_info = {}
 
   def initialize(name)

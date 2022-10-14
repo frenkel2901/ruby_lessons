@@ -7,12 +7,6 @@ require_relative 'passanger_train'
 require_relative 'route'
 require_relative 'station'
 
-class String 
-  def to_Station
-    Station.new(self)
-  end
-end
-
 loop do
   puts "Введите номер необходимой операции: "
   puts "1. Создать станцию: "
@@ -25,11 +19,34 @@ loop do
   puts "8. Просмотреть список станций и поездов "
   puts "0. Выйти"
   input = gets.chomp.to_i
-  break if input == 0
 
-  if input == 1
-    station_name = gets.chomp.to_s
-    station_name = station_name.to_Station
-    puts station_name.class
+  case input
+  
+  when 1
+    print "Ведите название станции: "
+    name_station = gets.chomp
+
+    name_station = Station.new(name_station)
+    puts name_station
+    puts name_station.depo
+
+  when 2
+    puts "1. Грузовой поезд"
+    puts "2. Пассажирский поезд"
+    i_type = gets.chomp.to_i
+
+    print "Ведите номер поезда: "
+    num_train = gets.chomp
+
+    num_train = CargoTrain.new(num_train) if i_type == 1
+    num_train = PassangerTrain.new(num_train) if i_type == 2
+
+    puts num_train
+  when 3
+
+
+  when 8
+    puts $stations_info
   end
+  
 end
