@@ -1,6 +1,7 @@
 class Route
-  attr_reader :route
-  
+  attr_reader :route, :first, :last
+  attr_writer :route
+
   def initialize(first, last) #создаем путь с 1 и последней станциями
     @route = [first, last]
     @first = first
