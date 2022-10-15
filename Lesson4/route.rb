@@ -7,7 +7,7 @@ class Route
     @first = first
     @last = last
   end
-  
+
   def new_station(station) #добавить новую выбранную станцию перед последней станцией (если такой нет)
     @route.insert(-2, station) unless @route.include?(station)
   end
