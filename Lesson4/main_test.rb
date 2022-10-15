@@ -183,8 +183,45 @@ def waggon_munus_train
   end
 end
 
+def drive_train
+  puts "1. Грузовой поезд"
+  puts "2. Пассажирский поезд"
+  i_type = gets.chomp.to_i
+  puts 'Введите номер поезда'
+  num_train = gets.chomp.to_s
+  key = num_train
 
-def all_info
+  puts "1. Грузовой поезд"
+  puts "2. Пассажирский поезд"
+
+  if i_type == 1
+    puts "1. Ехать вперед"
+    puts "2. Ехать назад"
+    i = gets.chomp.to_i
+
+    case i
+    when 1
+      $data_store[:c_trains][key].next_station
+    when 2
+      $data_store[:c_trains][key].back_station
+    end    
+  end
+
+  if i_type == 2
+    puts "1. Ехать вперед"
+    puts "2. Ехать назад"
+    i = gets.chomp.to_i
+
+    case i
+    when 1
+      $data_store[:p_trains][key].next_station
+    when 2
+      $data_store[:p_trains][key].back_station
+    end    
+  end
+end
+
+def stations_list
   puts $stations_info
 end
 
