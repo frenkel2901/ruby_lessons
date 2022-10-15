@@ -7,7 +7,7 @@ require_relative 'passanger_train'
 require_relative 'route'
 require_relative 'station'
 
-$data_store = {:routes => {}, :c_trains => {}, :p_trains => {}, :stations => {}}
+$data_store = {:routes => {}, :c_trains => {}, :p_trains => {}, :stations => {}, :waggons => {}}
 
 puts "Введите номер необходимой операции: "
 puts "1. Создать станцию: "
@@ -108,10 +108,86 @@ def route_manager
     route_choise = gets.chomp.to_s
     key = route_choise 
 
-    return $data_store[:stations][skey]
+    $data_store[:routes][key].delete_station($data_store[:stations][skey])
+
+    return $data_store
   end
 end
 
+def route_for_train
+  puts "1. Путь для грузового поезда"
+  puts "2. Путь для пассажирского поезда"
+  i_type = gets.chomp.to_i
+  puts 'Введите название поезда'
+  num_train = gets.chomp.to_s
+  key = num_train
+  print "Ведите название маршрута: "
+  route_choise = gets.chomp.to_s
+  rkey = route_choise 
+  
+  if i_type == 1
+    $data_store[:c_trains][key].train_route($data_store[:routes][rkey])
+  end
+
+  if i_type == 2
+    $data_store[:p_trains][key].train_route($data_store[:routes][rkey])
+  end
+
+  return $data_store
+  
+end
+
+def waggon_plus_train
+  puts "1. к грузовому"
+  puts "2. к пассажирскому"
+  i_type = gets.chomp.to_i
+  puts 'Введите название поезда'
+  num_train = gets.chomp.to_s
+  key = num_train
+  
+  puts 'Введите номер вагона'
+  num_waggon = gets.chomp.to_s
+  wkey = num_waggon
+
+  if i_type == 1
+    num_waggon = CargoWaggon.new(num_waggon)
+    $data_store[:waggons][wkey] = num_waggon
+    $data_store[:c_trains][key].waggon_plus(num_waggon)
+  end
+
+  if i_type == 2
+    num_waggon = CargoWaggon.new(num_waggon)
+    $data_store[:waggons][wkey] = num_waggon
+    $data_store[:p_trains][key].waggon_plus(num_waggon)
+  end
+end
+
+def waggon_munus_train
+  puts "1. от грузового"
+  puts "2. от пассажирского"
+  i_type = gets.chomp.to_i
+  puts 'Введите название поезда'
+  num_train = gets.chomp.to_s
+  key = num_train
+
+  puts 'Введите номер вагона'
+  num_waggon = gets.chomp.to_s
+  wkey = num_waggon
+
+  if i_type == 1
+    $data_store[:c_trains][key].waggon_minus($data_store[:waggons][wkey])
+  end
+
+  if i_type == 2
+    $data_store[:p_trains][key].waggon_minus($data_store[:waggons][wkey])
+  end
+end
+
+
 def all_info
   puts $stations_info
+end
+
+def information
+  $data_store
 end
