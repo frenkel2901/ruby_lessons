@@ -7,18 +7,18 @@ require_relative 'passanger_train'
 require_relative 'route'
 require_relative 'station'
 
-$data_store = {:routes => {}, :c_trains => {}, :p_trains => {}, :stations => {}, :waggons => {}}
+list = {"Выйти" => 0,
+"Создать станцию" => 1,
+"Создать поезд" => 2,
+"Создать моршрут и управлять станциями" => 3,
+"Назначить маршрут поезду" => 4,
+"Добавить вагон поезду" => 5,
+"Отцепить вагон от поезда" => 6,
+"Перемещать поезд по маршруту" => 7,
+"Просмотреть список станций и поездов" => 8}
 
-puts "Введите номер необходимой операции: "
-puts "1. Создать станцию: "
-puts "2. Создать поезд: "
-puts "3. Создать моршрут и управлять станциями: "
-puts "4. Назначить маршрут поезду: "
-puts "5. Добавить вагон поезду: "
-puts "6. Отцепить вагон от поезда: "
-puts "7. Перемещать поезд по маршруту: "
-puts "8. Просмотреть список станций и поездов "
-puts "0. Выйти"
+
+$data_store = {:routes => {}, :c_trains => {}, :p_trains => {}, :stations => {}, :waggons => {}}
 
 def create_station
   print "Ведите название станции: "
@@ -208,14 +208,14 @@ def drive_train
   end
 
   if i_type == 2
-    puts "1. Ехать вперед"
-    puts "2. Ехать назад"
-    i = gets.chomp.to_i
+    puts "for. Ехать вперед"
+    puts "back. Ехать назад"
+    i = gets.chomp.to_s
 
     case i
-    when 1
+    when "for"
       $data_store[:p_trains][key].next_station
-    when 2
+    when "back"
       $data_store[:p_trains][key].back_station
     end    
   end
@@ -227,4 +227,22 @@ end
 
 def information
   $data_store
+end
+
+loop do
+  list.each do |key, value| 
+    puts "#{value} = #{key}"
+  end
+  choise = gets.chomp.to_i
+
+  send (:create_station) if choise == 1
+  send (:create_train) if choise == 2
+  send (:route_manager) if choise == 3
+  send (:route_for_train) if choise == 4
+  send (:waggon_plus_train) if choise == 5
+  send (:waggon_munus_train) if choise == 6
+  send (:drive_train) if choise == 7
+  send (:stations_list) if choise == 8
+  
+  break if choise == 0
 end
