@@ -1,11 +1,9 @@
 class Station
   attr_reader :depo, :name
-  $stations_info = {}
 
   def initialize(name)
     @name = name
     @depo = []
-    $stations_info[name] = @depo
   end
 
   def train_arrive(train)
@@ -18,8 +16,7 @@ class Station
     @depo.delete(train)
   end
 
-  def stations_info
+  def station_info
     @depo
-    $stations_info
   end
 end
