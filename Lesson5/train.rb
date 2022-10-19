@@ -1,3 +1,6 @@
+require_relative 'instance_counter.rb'
+require_relative 'manufacture.rb'
+
 class Train
   include Manufacture
   include InstanceCounter

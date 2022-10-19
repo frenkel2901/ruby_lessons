@@ -1,7 +1,9 @@
+require_relative 'instance_counter.rb'
+
 class Station
   include InstanceCounter
-  
   attr_reader :depo, :name
+  
   @@all_stations = []
 
   def self.all
