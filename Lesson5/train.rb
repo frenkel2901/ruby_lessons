@@ -1,25 +1,22 @@
 class Train
-  include Manufacture
-  include InstanceCounter
+  #include Manufacture
+  #include InstanceCounter
 
   attr_accessor :speed
   attr_reader :number, :waggon, :train_route
 
-  @@all_trains = {}
+  @@all_trains = []
 
-  def self.find
-    print "Введите номер поезда: "
-    num = gets.chomp.to_s
-    @@all_trains[num]
+  def self.find(number)
+    @@all_trains.find { |train| train.number == number}
   end
 
   def initialize(number) #создание
-    key = number.to_s
     @number = number
     @waggon = []
     @train_route = []
     @speed = 0
-    @@all_trains[key] = self
+    @@all_trains << self
   end
 
   def stop #остановка
