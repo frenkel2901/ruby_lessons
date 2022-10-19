@@ -1,6 +1,6 @@
 class Train
-  #include Manufacture
-  #include InstanceCounter
+  include Manufacture
+  include InstanceCounter
 
   attr_accessor :speed
   attr_reader :number, :waggon, :train_route

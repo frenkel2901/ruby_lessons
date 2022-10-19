@@ -1,11 +1,9 @@
 #Не работает так
 
 module InstanceCounter
-  class << self
-    def self.include(base)
+  def self.include(base)
       base.extend ClassMethod
       base.send :include, InstanceMethods
-    end
   end
 
   module ClassMethod
@@ -27,7 +25,7 @@ module InstanceCounter
 end
 
 class Test
-  self.include InstanceCounter
+  include InstanceCounter
   def initialize(name)
     @name = name
   end
