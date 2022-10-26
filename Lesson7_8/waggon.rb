@@ -1,9 +1,9 @@
-require_relative 'manufacture.rb'
+require_relative 'manufacture'
 
 class Waggon
   include Manufacture
   attr_accessor :name, :size
-  attr_reader :taken, :taken, :full_size
+  attr_reader :taken, :full_size
 
   def initialize(name, size)
     @name = name
@@ -13,12 +13,11 @@ class Waggon
   end
 
   def take_place
-    unless self.size.zero?
+    if self.size.zero?
+      puts 'Not enough space!'
+    else
       @taken += 1
       @size -= 1
-    else 
-      puts "Не достаточно свободных мест!"
     end
   end
-
 end

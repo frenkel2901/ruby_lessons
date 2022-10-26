@@ -20,6 +20,6 @@ class Route
   end
 
   def validate!
-    raise "Название не может быть пустым" if name.nil?
+    raise "Title cannot be empty" if name.nil?
   end
 end

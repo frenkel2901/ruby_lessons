@@ -1,7 +1,7 @@
 module Valid
   def valid?
     validate!
-    true 
+    true
   rescue
     false
   end
