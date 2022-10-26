@@ -32,7 +32,7 @@ class Station
   
   def station_info
     if block_given?
-      depo.each { |train| yield train } 
+      depo.each { |train| yield train }
     else
       @depo
     end
@@ -41,7 +41,6 @@ class Station
   private
 
   def validate!
-    raise "Name cannot be empty" if name.nil?
+    raise 'Name cannot be empty' if name.nil?
   end
-    
 end

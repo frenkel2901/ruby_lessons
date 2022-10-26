@@ -15,7 +15,7 @@ class Train
   TRAIN_NUM = /^[a-z0-9]{3}(|-)[a-z0-9]{2}$/i
 
   def self.find(number)
-    @@all_trains.find { |train| train.number == number}
+    @@all_trains.find { |train| train.number == number }
   end
 
   def initialize(number)
@@ -29,12 +29,12 @@ class Train
   end
 
   def stop
-    @speed = 0 
+    @speed = 0
   end
 
   def waggon_info
     if block_given?
-      waggon.each { |waggon| yield waggon } 
+      waggon.each { |waggon| yield waggon }
     else
       @waggon
     end
@@ -50,9 +50,9 @@ class Train
   end
 
   def train_route(route)
-     @train_route = route.route
-     @position = route.route[0]
-     @position.train_arrive(self)
+    @train_route = route.route
+    @position = route.route[0]
+    @position.train_arrive(self)
   end
 
   def next_station
@@ -65,7 +65,7 @@ class Train
   end
 
   def back_station
-    if @train_route.index(@position) > 0
+    if @train_route.index(@position).positive?
       @position.train_departure(self)
       @back_station = @train_route[@train_route.index(@position) - 1]
       @position = @train_route[@train_route.index(@position) - 1]

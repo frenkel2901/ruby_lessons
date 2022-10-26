@@ -7,5 +7,6 @@ require_relative 'passanger_train'
 require_relative 'route'
 require_relative 'station'
 require_relative 'menu_class'
+require_relative 'valid'
 
 Menu.new.start
