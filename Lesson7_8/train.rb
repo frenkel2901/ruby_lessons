@@ -14,6 +14,8 @@ class Train
 
   TRAIN_NUM = /^[a-z0-9]{3}(|-)[a-z0-9]{2}$/i
 
+  Train.validate(self, :format, TRAIN_NUM)
+
   def self.find(number)
     @@all_trains.find { |train| train.number == number }
   end
@@ -22,7 +24,7 @@ class Train
 
   def initialize(number)
     @number = number
-    Train.validate(self, :format, TRAIN_NUM)
+    #Train.validate(self, :format, TRAIN_NUM)
     validate! #from valid.rb
     @waggon = []
     @train_route = []

@@ -1,4 +1,7 @@
 class PassangerTrain < Train
+
+  PassangerTrain.validate(self, :format, TRAIN_NUM)
+
   def waggon_plus(waggon)
     if instance_of?(PassangerWaggon)
       super
