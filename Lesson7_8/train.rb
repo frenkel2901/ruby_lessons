@@ -5,7 +5,7 @@ require_relative 'valid'
 class Train
   include Manufacture
   include InstanceCounter
-  include Valid
+  include Validation
   
   attr_accessor :number
   attr_reader :waggon, :train_route, :speed
