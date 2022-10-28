@@ -18,9 +18,12 @@ class Train
     @@all_trains.find { |train| train.number == number }
   end
 
+  alias :name :number
+
   def initialize(number)
     @number = number
-    validate!
+    Train.validate(self, :format, TRAIN_NUM)
+    validate! #from valid.rb
     @waggon = []
     @train_route = []
     @speed = 0
@@ -77,11 +80,11 @@ class Train
   
   attr_writer :speed, :waggon
 
-  def validate!
-    raise 'Number cannot be empty' if number.nil?
+  #def validate!
+   # raise 'Number cannot be empty' if number.nil?
 
-    raise 'The number must contain 5 or 6 characters' if number.to_s.length < 5
+   # raise 'The number must contain 5 or 6 characters' if number.to_s.length < 5
 
-    raise "Invalid number format: \nXXXXX or XXX-XX, X - number or letter" if number.to_s !~ TRAIN_NUM
-  end
+   # raise "Invalid number format: \nXXXXX or XXX-XX, X - number or letter" if number.to_s !~ TRAIN_NUM
+  #end
 end

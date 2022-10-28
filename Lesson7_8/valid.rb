@@ -20,9 +20,7 @@ module Validation
     rescue RuntimeError
       false
     end
-
-    private
-
+    
     def validate!
       self.class.instance_variable_get(:@validate).each do |valid_hash|
 
